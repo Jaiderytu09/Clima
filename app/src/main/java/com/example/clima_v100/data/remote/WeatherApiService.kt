@@ -34,7 +34,7 @@ interface WeatherApiService {
     suspend fun getCurrentWeather(
         @Query("key") apiKey: String,
         @Query("q") query: String,
-        @Query("aqi") aqi: String = "no"
+        @Query("aqi") aqi: String = "yes"
     ): CurrentWeatherResponse
 }
 
@@ -90,9 +90,23 @@ data class CurrentLocationData(
 )
 
 data class CurrentWeatherData(
-    val temp_f: Float,      // Temperature in Fahrenheit
-    val temp_c: Float,      // Temperature in Celsius
-    val condition: CurrentCondition
+    val temp_f: Float,
+    val temp_c: Float,
+    val feelslike_c: Float,
+    val feelslike_f: Float,
+    val humidity: Int,
+    val wind_kph: Float,
+    val wind_mph: Float,
+    val wind_dir: String,
+    val pressure_mb: Float,
+    val pressure_in: Float,
+    val precip_mm: Float,
+    val cloud: Int,
+    val vis_km: Float,
+    val uv: Float,
+    val gust_kph: Float,
+    val condition: CurrentCondition,
+    val is_day: Int
 )
 
 data class CurrentCondition(

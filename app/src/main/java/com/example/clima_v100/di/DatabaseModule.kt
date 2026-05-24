@@ -7,11 +7,14 @@ import com.example.clima_v100.data.local.dao.SuggestionDao
 import com.example.clima_v100.data.local.dao.UserDao
 import com.example.clima_v100.data.local.dao.UserPreferenceDao
 import com.example.clima_v100.data.local.database.AppDatabase
+import com.example.clima_v100.data.remote.WeatherApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -52,5 +55,15 @@ object DatabaseModule {
     @Singleton
     fun provideUserPreferenceDao(database: AppDatabase): UserPreferenceDao {
         return database.userPreferenceDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideWeatherApiService(): WeatherApiService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.weatherapi.com/")  // ← temporal hardcodeado
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(WeatherApiService::class.java)
     }
 }

@@ -7,9 +7,11 @@ import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.clima_v100.ui.screens.HomeScreen
 import com.example.clima_v100.ui.screens.LoginScreen
 import com.example.clima_v100.ui.theme.ClimaV100Theme
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -33,9 +35,11 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    composable("home") {
-                        // HomeScreen() ← aquí conectas tu pantalla principal
+                    composable("home"){
+                        HomeScreen()
                     }
+
+
                 }
             }
         }
